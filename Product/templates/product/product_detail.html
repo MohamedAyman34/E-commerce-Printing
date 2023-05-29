@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% block body %}
+
+
+        <!--=====================================
+                PRODUCT DETAILS PART START
+        =======================================-->
+        <section class="inner-section">
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="details-gallery">
+                            <div>
+                                <h2 class="details-name">{{product.name}}</h2>
+                            </div>
+                            <ul class="details-preview mt-2"> 
+                                <li><img src="{{product.image.url}}" alt="product image" width=100% hight=100%></li>
+                            </ul>
+                      
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <ul class="product-navigation">
+                           
+                        </ul>
+                        <div class="details-content">
+                            {% comment %} <form method='POST' enctype="multipart/form-data">
+                                {%csrf_token%}
+                                {{form}}
+                                <input type="submit" value="Create Post">
+                            
+                            </form> {% endcomment %}
+                            <form class="user-form" method='post' enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label class="form-label">profile image</label>
+                                        <input class="form-control" name='photo' type="file">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">title</label>
+                                        <select class="form-select" name='orientation' >
+                                            <option selected="">choose title</option>
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">title</label>
+                                        <select class="form-select" name='print_color' >
+                                            <option selected="">choose title</option>
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">title</label>
+                                        <select class="form-select" name='side' >
+                                            <option selected="">choose title</option>
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">title</label>
+                                        <select class="form-select" name='Type' >
+                                            <option selected="">choose title</option>
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">title</label>
+                                        <select class="form-select" name='size'>
+                                            <option selected="">choose title</option>
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">title</label>
+                                        <select class="form-select" name='quantity' >
+                                            <option selected="">choose title</option>
+                                            
+                                        </select>
+                                    </div>
+                                    
+                                </div>
+                               
+                                
+                            <div class="details-add-group">
+                                <button class="product-add" title="Add to Cart">
+                                    <i class="fas fa-shopping-basket"></i>
+                                    <span>add to cart</span>
+                                </button>
+                                <div class="product-action">
+                                    <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button>
+                                    <input class="action-input" title="Quantity Number" type="text" name="quantity" value="1">
+                                    <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
+                                </div>
+                            </div>
+                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--=====================================
+                PRODUCT DETAILS PART END
+        =======================================-->
+
+
+        <!--=====================================
+                  PRODUCT TAB PART START
+        =======================================-->
+        <section class="inner-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product-details-frame">
+                            <h3 class="frame-title">Description</h3>
+                            <div class="tab-descrip">
+                                <p>{{product.description}}</p>
+                            </div>
+                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--=====================================
+                    PRODUCT TAB PART END
+        =======================================-->
+
+
+{% endblock body %}
