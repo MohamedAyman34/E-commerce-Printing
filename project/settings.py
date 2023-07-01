@@ -71,8 +71,11 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'Product.product_context_processor.get_product',
                 'settings.site_context_processor.get_site_info',
-                'accounts.user_context_processor.get_user',
-                'orders.order_context_processor.get_or_create_order',
+                # 'accounts.user_context_processor.get_user',
+                # 'orders.order_context_processor.get_or_create_order',
+                # 'orders.order_context_processor.delete_item',
+                # 'orders.order_context_processor.send_email',
+
 
 
 
