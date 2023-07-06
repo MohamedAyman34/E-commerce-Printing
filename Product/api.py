@@ -4,7 +4,8 @@ from .models import Product
 from rest_framework import generics
 
 
-class ProductList_api(generics.ListAPIView):
+
+class ProductList_api(generics.ListCreateAPIView):
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
 
