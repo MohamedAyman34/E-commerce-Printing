@@ -133,18 +133,11 @@
                     </form>
 
                     <div class="header-widget-group">
-                        <a href="compare.html" class="header-widget" title="Compare List">
-                            <i class="fas fa-random"></i>
-                            <sup>0</sup>
-                        </a>
-                        <a href="wishlist.html" class="header-widget" title="Wishlist">
-                            <i class="fas fa-heart"></i>
-                            <sup>0</sup>
-                        </a>
+                        
                         <button class="header-widget header-cart" title="Cartlist">
                             <i class="fas fa-shopping-basket"></i>
-                            <sup>9+</sup>
-                            <span>total price<small>$345.00</small></span>
+                            <sup>{{cart.get_total_count}}</sup>
+                            <span>total price<small>{{cart.get_total}} KWD</small></span>
                         </button>
                     </div>
                 </div>
@@ -372,6 +365,7 @@
         <!--=====================================
                 CATEGORY SIDEBAR PART START
         =======================================-->
+        
         <aside class="category-sidebar">
             <div class="category-header">
                 <h4 class="category-title">
@@ -518,6 +512,7 @@
                 <p>All Rights Reserved by <a href="#">Mironcoder</a></p>
             </div>
         </aside>
+
         <!--=====================================
                 CATEGORY SIDEBAR PART END
         =======================================-->
@@ -530,44 +525,60 @@
             <div class="cart-header">
                 <div class="cart-total">
                     <i class="fas fa-shopping-basket"></i>
-                    <span>total item (5)</span>
+                    <span>total item {{cart.get_total_count}}</span>
                 </div>
                 <button class="cart-close"><i class="icofont-close"></i></button>
             </div>
             <ul class="cart-list">
             {% for item in crt_detail %}
+                
+                
+               
                 <li class="cart-item">
                     <div class="cart-media">
-                        <a href="#"><img src="images/product/01.jpg" alt="product"></a>
-                        <button class="cart-delete"><i class="far fa-trash-alt"></i></button>
+                        <a href="#"><img src="{{item.photo.url}}"  alt="product"></a>
+                        
+                        
+                            {% comment %} <input type="hidden" value={{item.id}} name='itemid'> {% endcomment %}
+                            <form class="cart-delete"  method="post">
+                                {% csrf_token %}
+                                <input type="hidden" value={{item.id}} name='itemid'>
+                                <button class="cart-delete" type="submit" href="{% url 'home:Home'  %}" >  
+                                    <i class="far fa-trash-alt" ></i>
+                                </button>
+                            </form>
                     </div>
                     <div class="cart-info-group">
                         <div class="cart-info">
-                            <h6><a href="product-single.html">{{item}}</a></h6>
-                            <p>Unit Price - KWD{{item.price}}</p>
+                            <h6><a href="{% url 'products:product_detail' item.product.slug %}" >{{item}}</a></h6>
+                            <p>Unit Price - {{item.price}} KWD </p>
                         </div>
                         <div class="cart-action-group">
-                            <div class="product-action">
-                                <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button>
-                                <input class="action-input" title="Quantity Number" type="text" name="quantity" value="{{item.quantity}}">
-                                <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
+                            <div class="product-action ">
+                                  <h6>{{item.quantity}} pieces</h6>
                             </div>
-                            <h6>$56.98</h6>
+                            <h6>{{item.total}} KWD</h6>
                         </div>
                     </div>
                 </li> 
+                
                 {% endfor %}
             </ul>
             <div class="cart-footer">
-                <button class="coupon-btn">Do you have a coupon code?</button>
-                <form class="coupon-form">
+                
+                {% comment %} <form class="coupon-form" >
+
                     <input type="text" placeholder="Enter your coupon code">
                     <button type="submit"><span>apply</span></button>
+                </form> {% endcomment %}
+                <form class="send-email"  method="post">
+                {% csrf_token %}
+                    
+                    <a class="cart-checkout-btn" type="submit" href="{% url 'home:Home' %}">
+                        <span class="checkout-label">Send to designer</span>
+                        <span class="checkout-price">{{cart.get_total}} KWD</span>
+                    </a>
                 </form>
-                <a class="cart-checkout-btn" href="checkout.html">
-                    <span class="checkout-label">Proceed to Checkout</span>
-                    <span class="checkout-price">$369.78</span>
-                </a>
             </div>
         </aside>
         <!--=====================================

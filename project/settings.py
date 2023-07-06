@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_summernote',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_framework_swagger',
+    'dj_rest_auth',
 
     'Home',
     'Product',
@@ -73,6 +77,8 @@ TEMPLATES = [
                 'settings.site_context_processor.get_site_info',
                 'accounts.user_context_processor.get_user',
                 'orders.order_context_processor.get_or_create_order',
+                # 'orders.order_context_processor.delete_item',
+
 
 
 
@@ -165,3 +171,8 @@ AUTHENTICATION_BACKENDS = ['accounts.backend.EmailBackend']
 #     "127.0.0.1",
 #     # ...
 # ]
+REST_AUTH = {
+    'USE_JWT': True,
+    'JWT_AUTH_COOKIE': 'jwt-auth',
+}
+

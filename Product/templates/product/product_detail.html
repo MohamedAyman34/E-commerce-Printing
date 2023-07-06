@@ -30,9 +30,10 @@
                                 <input type="submit" value="Create Post">
                             
                             </form> {% endcomment %}
-                            <form class="user-form" method='post' enctype="multipart/form-data">
+                            <form class="user-form" action="{% url 'orders:add_to_cart' %}" method='post' enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <div class="form-group">
+                                    <input type="hidden" value={{product.id}} name='productid'>
                                     <div class="form-group">
                                         <label class="form-label">profile image</label>
                                         <input class="form-control" name='photo' type="file">
@@ -52,9 +53,10 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-label">title</label>
+                                        <label class="form-label">Side</label>
                                         <select class="form-select" name='side' >
-                                            <option selected="">choose title</option>
+                                            <option selected="">Single-Side</option>
+                                            <option >Double-Side</option>
                                             
                                         </select>
                                     </div>
@@ -75,11 +77,20 @@
                                     <div class="form-group">
                                         <label class="form-label">title</label>
                                         <select class="form-select" name='quantity' >
-                                            <option selected="">choose title</option>
+                                            <option selected="">1</option>
+                                            <option selected="">2</option>
+                                            <option selected="">3</option>
+
                                             
                                         </select>
                                     </div>
                                     
+                                    
+                                    <div class="product-action">
+                                        <input class="product-add myinput" title="Add to Cart" type="submit" value="add to cart">
+                                    </div>
+
+
                                 </div>
                                
                                 
@@ -88,11 +99,7 @@
                                     <i class="fas fa-shopping-basket"></i>
                                     <span>add to cart</span>
                                 </button>
-                                <div class="product-action">
-                                    <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button>
-                                    <input class="action-input" title="Quantity Number" type="text" name="quantity" value="1">
-                                    <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
-                                </div>
+                               
                             </div>
                           
                         </div>
